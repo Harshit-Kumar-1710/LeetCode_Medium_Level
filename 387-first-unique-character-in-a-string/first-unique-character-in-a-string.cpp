@@ -2,14 +2,21 @@ class Solution {
 public:
     int firstUniqChar(string s) 
     {
-       int Array[26]={0},n=s.size();
-       for(int i=0;i<s.size();i++)
+       unordered_map<char,int>m;
+       for(char c:s)
        {
-            Array[s[i]-'a']+=1;
+            if(m.find(c)==m.end())
+            {
+                m[c]=1;
+            }
+            else
+            {
+                m[c]+=1;
+            }
        }
        for(int i=0;i<s.size();i++)
        {
-            if(Array[s[i]-'a']==1)
+            if(m[s[i]]==1)
             {
                 return i;
             }
