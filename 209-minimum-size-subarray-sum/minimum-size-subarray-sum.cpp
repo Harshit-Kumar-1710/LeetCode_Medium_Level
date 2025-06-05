@@ -1,25 +1,42 @@
 class Solution {
+private:
+    bool IsValidSubArray(vector<int>&nums,int len,int target)
+    {
+        int sum=0;
+        for(int i=0;i<len;i++)
+        sum+=nums[i];
+        if(sum>=target)
+        {
+            return true;
+        }
+        for(int i=len;i<nums.size();i++)
+        {
+            sum+=nums[i];
+            sum-=nums[i-len];
+            if(sum>=target)
+            {
+                return true;
+            }
+        }
+    return false;
+    }
 public:
     int minSubArrayLen(int target, vector<int>& nums) 
     {
-        int Sum=0,MinLen=0,Left=0,i;
-        for(int Right=0;Right<nums.size();Right++)
+        int low=1,high=nums.size(),ans=0;
+        while(low<=high)
         {
-            Sum+=nums[Right];
-            while(Sum>=target)
+            int mid=(low+high)/2;
+            if(IsValidSubArray(nums,mid,target))
             {
-                if(MinLen==0)
-                {
-                    MinLen=Right-Left+1;
-                }
-                else
-                {
-                    MinLen=min(MinLen,Right-Left+1);
-                }
-                Sum-=nums[Left];
-                Left++;
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
             }
         }
-    return MinLen;
+    return ans;
     }
 };
