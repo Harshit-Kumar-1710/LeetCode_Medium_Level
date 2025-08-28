@@ -3,12 +3,12 @@ public:
     int findDuplicate(vector<int>& nums) 
     {
         int n=nums.size();
-        unordered_set<int>s;
+        vector<int>Frequency(n,0);
         for(auto i:nums)
         {
-            if(s.find(i)==s.end())
+            if(Frequency[i]==0)
             {
-                s.insert(i);
+                Frequency[i]+=1;
             }
             else
             {
