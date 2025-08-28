@@ -3,7 +3,7 @@ public:
     int findDuplicate(vector<int>& nums) 
     {
         int n=nums.size();
-        set<int>s;
+        unordered_set<int>s;
         for(auto i:nums)
         {
             if(s.find(i)==s.end())
