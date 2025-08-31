@@ -11,7 +11,7 @@ public:
     }
     int rob(vector<int>& nums) 
     {
-        Dp.resize(nums.size(),-1);
+        Dp.resize(nums.size()+1,-1);
         int n=nums.size();
         return Func(0,nums,n);
     }
