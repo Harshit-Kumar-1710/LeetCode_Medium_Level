@@ -3,10 +3,12 @@ public:
     vector<int>Dp;
     int Func(int n)
     {
-        if(n==1) return 1;
-        if(n==0) return 1;
-        if(Dp[n]!=-1) return Dp[n];
-        return Dp[n]=Func(n-1)+Func(n-2);
+        Dp[0]=1,Dp[1]=1;
+        for(int i=2;i<=n;i++)
+        {
+            Dp[i]=Dp[i-1]+Dp[i-2];
+        }
+        return Dp[n];
     }
     int climbStairs(int n) 
     {
