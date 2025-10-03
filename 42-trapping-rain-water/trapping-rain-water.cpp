@@ -3,29 +3,24 @@ public:
     int trap(vector<int>& height) 
     {
         int n=height.size();
-        vector<int>LeftMaxHeight(n);
-        vector<int>RightMaxHeight(n);
-        int LMaxHeight=0,RMaxHeight=0;
-        for(int i=0;i<n;i++)
+        int Answer=0;
+        int LeftMaxHeight=0,RightMaxHeight=0;
+        int i=0,j=n-1;
+        while(i<j)
         {
-            LeftMaxHeight[i]=LMaxHeight;
-            LMaxHeight=max(height[i],LMaxHeight);
-        }
-        for(int i=n-1;i>=0;i--)
-        {
-            RightMaxHeight[i]=RMaxHeight;
-            RMaxHeight=max(height[i],RMaxHeight);
-        }
-        int sum=0;
-        for(int i=0;i<n;i++)
-        {
-            int h1=min(LeftMaxHeight[i],RightMaxHeight[i])-height[i];
-            if(h1<0)
+            LeftMaxHeight=max(LeftMaxHeight,height[i]);
+            RightMaxHeight=max(RightMaxHeight,height[j]);
+            if(LeftMaxHeight<RightMaxHeight)
             {
-                continue;
+                Answer+=LeftMaxHeight-height[i];
+                i++;
             }
-            sum+=h1;
+            else
+            {
+                Answer+=RightMaxHeight-height[j];
+                j--;
+            }
         }
-    return sum;
+    return Answer;
     }
 };
