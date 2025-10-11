@@ -3,8 +3,8 @@ public:
     vector<vector<int>>Dp;
     int Func(int i,int j,int n,int m,string &s,string &t)
     {
-        if(i>n && j>m) return 1;
-        if(i>n && j<=m || i<=n && j>m) return 0;
+        if(j==m) return 1;
+        if(i==n) return 0;
         if(Dp[i][j]!=-1) return Dp[i][j];
         if(s[i]==t[j])
         {
@@ -18,7 +18,7 @@ public:
     {
         int n=s.size();
         int m=t.size();
-        Dp.resize(n+1,vector<int>(m+1,-1));
+        Dp.resize(n,vector<int>(m,-1));
         return Func(0,0,n,m,s,t);
         
     }
