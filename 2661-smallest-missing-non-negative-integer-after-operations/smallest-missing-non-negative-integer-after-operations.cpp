@@ -3,27 +3,23 @@ public:
     int findSmallestInteger(vector<int>& nums, int value) 
     {
         int n=nums.size();
-        map<int,int>M;
-        for(int i=0;i<n;i++)
+        vector<int>Freq(value,0);
+        for(auto num:nums)
         {
-            if(nums[i]<0)
+            Freq[((num%value)+value)%value]++;
+        }
+        int MEX=0;
+        while(true)
+        {
+            if(Freq[MEX%value]>0)
             {
-                nums[i]=(((nums[i]%value)+value)%value);
+                Freq[MEX%value]--;
+                MEX++;
             }
             else
             {
-                nums[i]=nums[i]%value;
+                break;
             }
-        }
-        for(auto i:nums)
-        {
-            M[i]++;
-        }
-        int MEX=0;
-        while(M[(MEX%value)]>0)
-        {
-            M[MEX%value]--;
-            MEX++;
         }
     return MEX;
     }
