@@ -24,7 +24,6 @@ public:
             {
                 return temp2;
             }
-            S.insert(temp2);
             temp2=temp2->next;
         }
     return nullptr;    
