@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>>Vvi;
-    void Func(int i,int n,vector<int>&nums,vector<int>Vec)
+    void Func(int i,int n,vector<int>&nums,vector<int>&Vec)
     {
         if(i==n) 
         {
