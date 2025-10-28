@@ -1,11 +1,11 @@
 class Solution {
 public:
-    vector<vector<int>>Vvi;
+    set<vector<int>>S;
     void Func(int i,int n,vector<int>&nums,vector<int>&Vec)
     {
         if(i==n)
         {
-            Vvi.push_back(Vec);
+            S.insert(Vec);
             return;
         }
         //Take nums[i]
@@ -21,17 +21,12 @@ public:
         int n=nums.size();
         sort(nums.begin(),nums.end());
         vector<int>Vec;
-        set<vector<int>>s;
+        vector<vector<int>>Ans;
         Func(0,n,nums,Vec);
-        vector<vector<int>>TwoVector;
-        for(auto val:Vvi)
+        for(auto i:S)
         {
-            if(s.find(val)==s.end())
-            {
-                TwoVector.push_back(val);
-            }
-            s.insert(val);
+            Ans.push_back(i);            
         }
-    return TwoVector;
+    return Ans;
     }
 };
