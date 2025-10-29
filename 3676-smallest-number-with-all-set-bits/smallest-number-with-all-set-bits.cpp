@@ -6,7 +6,7 @@ public:
         while(num!=0)
         {
             c++;
-            num=num>>1;
+            num=num/2;
         }
         return pow(2,c)-1;
     }
