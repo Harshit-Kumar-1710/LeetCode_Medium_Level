@@ -1,23 +1,16 @@
 class Solution {
 public:
+    char Func(int k)
+    {
+        if(k==1) return 'a';
+        long long len=1;
+        while(len*2<k) len*=2;
+        char ch=Func(k-len);
+        return (ch=='z')?'a':ch+1;
+    }
     char kthCharacter(int k) 
     {
-        string word="a";
-        char ch;
-        while(word.size()<k)
-        {
-            string word1;
-            for(auto c:word)
-            {
-                char ch=c+1;
-                word1+=ch;
-            }
-            word.append(word1);
-        }
-        for(int i=0;i<k;i++)
-        {
-            ch=word[i];
-        }
-    return ch;        
+        return Func(k);
+        
     }
 };
