@@ -2,26 +2,31 @@ class Solution {
 public:
     int totalNumbers(vector<int>& digits) 
     {
-        int n=digits.size();
-        set<int>s;
-        for(int i=0;i<n;i++)
+        int n=digits.size(),c=0;
+        vector<int>Vec(10);
+        for(auto val:digits)
         {
-            for(int j=0;j<n;j++)
-            {
-                for(int k=0;k<n;k++)
-                {
-                    if(i==j || j==k || i==k)
-                    {
-                        continue;
-                    }
-                    int Num=digits[i]*100+digits[j]*10+digits[k];
-                    if(Num>=100 && Num%2==0)
-                    {
-                        s.insert(Num);
-                    }
-                }
-            }
+            Vec[val]++;
         }
-    return s.size();
+        for(int i=1;i<=9;i++)
+        {
+            if(Vec[i]==0) continue;
+            Vec[i]--;
+            for(int j=0;j<=9;j++)
+            {
+                if(Vec[j]==0) continue;
+                Vec[j]--;
+                for(int k=0;k<=8;k+=2)
+                {
+                    if(Vec[k]==0) continue;
+                    Vec[k]--;
+                    c++;
+                    Vec[k]++;
+                }
+            Vec[j]++;
+            }
+        Vec[i]++;
+        }
+    return c;
     }
 };
